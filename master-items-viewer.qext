@@ -1,0 +1,21 @@
+{
+    "name": "Master Items Viewer",
+    "description": "Master Measure and Dimension viewer for Qlik Sense Application",
+    "bundle": {
+        "id": "Kab-s Extension Bundle",
+        "name": "Kab-s Extension Bundle",
+        "description": "Qlik Sense Extension bundle from Kabir Rab."
+    },
+    "type": "visualization",
+    "icon": "extension",
+    "version": "0.0.0.1",
+    "author": "Kabir Rab",
+    "homepage": "https://kabonline.net",
+    "keywords": "qlik-sense, visualization, master-item",
+    "license": "MIT",
+    "repository": "",
+    "preview": "",
+    "dependencies": {
+        "qlik-sense": ">=3.0.x"
+    }
+}

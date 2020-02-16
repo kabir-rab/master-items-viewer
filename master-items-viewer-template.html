@@ -1,0 +1,31 @@
+<div qv-extension>
+    <div class="lui-buttongroup top-menu">               
+        <button class="lui-button  lui-buttongroup__button {{measureCss}}" ng-click="viewChange(1)">Measures</button>
+        <button class="lui-button  lui-buttongroup__button {{dimensionCss}}" ng-click="viewChange(2)">Dimensions</button> 
+    </div>
+    <div class="lui-search">
+        <span class="lui-icon  lui-icon--search  lui-search__search-icon"></span>
+        <input ng-keyup="search()" class="lui-search__input" id="table-search" maxlength="255" spellcheck="false" type="text" placeholder="Search"/>        
+        <button ng-click="searchClear()" class="lui-search__clear-button">
+            <span class="lui-icon  lui-icon--small  lui-icon--close"></span>
+        </button>
+    </div>    
+    <div class="table-container">        
+        <table id="master-lib-table" class="master-table stripe hover row-border dt-head-left table table-resizable">
+            <thead> 
+                <tr> 
+                    <th>No</th> 
+                    <th>Name</th> 
+                    <th>Definition</th> 
+                    <th>Expression/Formula</th>
+                </tr> 
+            </thead> 
+            <tr class="tr-search" data-search="{{item.qData.title}} {{item.qData.description}} {{item.qData.expression}}" ng-repeat="item in measureDetails"> 
+                <td> {{$index + 1}} </td> 
+                <td class="tr-highlight"> {{item.qData.title}} </td> 
+                <td class="tr-highlight"> {{item.qData.description}} </td> 
+                <td class="tr-highlight"> {{item.qData.expression}} </td>             
+            </tr> 
+        </table>        
+    </div>
+</div>
