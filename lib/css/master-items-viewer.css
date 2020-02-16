@@ -15,12 +15,17 @@
 	overflow: auto;
 }
 .table-resizable.resizing, .table-resizable th::before {
-	cursor: col-resize;
+	cursor: e-resize;	
 	-webkit-user-select: none;
 	   -moz-user-select: none;
 		-ms-user-select: none;
 			user-select: none;
   }
+
+  .table-resizable th:hover {
+	border-right: 1px solid #585858;
+  }
+
   .table-resizable th {
 	position: relative;
   }
@@ -77,11 +82,26 @@
 	padding-top: 12px;
 	padding-bottom: 12px;
 	text-align: left;
-	background-color: #4CAF50;
-	color: white;
+	/*background-color: #4CAF50;
+	color: white;*/
 	position: -webkit-sticky;
 	position: sticky;
 	top: 0;	
 	-webkit-box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 	        box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+}
+
+/* Sort icons */
+.sortorder:after {
+	content: '\25b2';   
+}
+.sortorder.reverse:after {
+content: '\25bc';   
+}
+
+/* for hidden text */
+.empty-display {
+	width: 100%;	
+	padding: 2rem;
+	text-align: center;
 }

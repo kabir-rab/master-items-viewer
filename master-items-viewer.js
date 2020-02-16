@@ -14,7 +14,7 @@ function ( template, cssContent, prop, jQuery, qlik ) {
 	return {
 		definition: prop,
 		support: {
-			export: true,
+			export: false,
 			exportData: false,
 			snapshot: true
 		},
@@ -86,7 +86,17 @@ function ( template, cssContent, prop, jQuery, qlik ) {
 					$('#table-search').val('');	
 					$scope.search();
 				};											
-			};				
+			};
+			
+			//sorting
+			$scope.propertyName = 'qData.title';
+			$scope.reverse = true;
+			//$scope.friends = friends;
+
+			$scope.sortBy = function(propertyName) {
+				$scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
+				$scope.propertyName = propertyName;
+			};
 		}],
 		paint: function ($element) {
 			// set hight for the scroll bar

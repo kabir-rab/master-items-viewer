@@ -14,18 +14,21 @@
         <table id="master-lib-table" class="master-table stripe hover row-border dt-head-left table table-resizable">
             <thead> 
                 <tr> 
-                    <th>No</th> 
-                    <th>Name</th> 
-                    <th>Definition</th> 
-                    <th>Expression/Formula</th>
+                <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-show="layout.props.showId" >No</th> 
+                <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-show="layout.props.showName" ng-click="sortBy('qData.title')">Name <span class="sortorder" ng-show="propertyName === 'qData.title'" ng-class="{reverse: reverse}"></span></th> 
+                <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-show="layout.props.showDesc" ng-click="sortBy('qData.description')">Definition <span class="sortorder" ng-show="propertyName === 'qData.description'" ng-class="{reverse: reverse}"></span></th> 
+                <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-show="layout.props.showExp" ng-click="sortBy('qData.expression')">Expression/Formula<span class="sortorder" ng-show="propertyName === 'qData.expression'" ng-class="{reverse: reverse}"></span></th>
                 </tr> 
             </thead> 
-            <tr class="tr-search" data-search="{{item.qData.title}} {{item.qData.description}} {{item.qData.expression}}" ng-repeat="item in measureDetails"> 
-                <td> {{$index + 1}} </td> 
-                <td class="tr-highlight"> {{item.qData.title}} </td> 
-                <td class="tr-highlight"> {{item.qData.description}} </td> 
-                <td class="tr-highlight"> {{item.qData.expression}} </td>             
+            <tr class="tr-search" data-search="{{item.qData.title}} {{item.qData.description}} {{item.qData.expression}}" ng-repeat="item in measureDetails | orderBy:propertyName:reverse"> 
+                <td ng-show="layout.props.showId"> {{$index + 1}} </td> 
+                <td ng-show="layout.props.showName" class="tr-highlight"> {{item.qData.title}} </td> 
+                <td ng-show="layout.props.showDesc" class="tr-highlight"> {{item.qData.description}} </td> 
+                <td ng-show="layout.props.showExp" class="tr-highlight"> {{item.qData.expression}} </td>                             
             </tr> 
-        </table>        
+        </table>                
     </div>
+</div>
+<div ng-if="layout.props.showId== false && layout.props.showName == false && layout.props.showDesc == false && layout.props.showExp == false" class="top-menu">
+    Please select a column to show from the property panel...
 </div>
