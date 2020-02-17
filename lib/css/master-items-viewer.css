@@ -13,7 +13,8 @@
 	text-align: center;
 }
 .highlight { 
-	background-color: yellow 
+	background-color: yellow;
+	color: #000 !important;
 }
 .table-container {
 	overflow: auto;	
@@ -137,4 +138,15 @@ content: '\25bc';
     margin: 1px;
     list-style: none;
     white-space: nowrap;
+}
+.lui-tag:hover {    
+    color: #fff;   
+    background-color: #009845;
+    border: 1px solid #0aaf54;   
+}
+
+.lui-tag-search {    
+    color: #fff;   
+    background-color: #0089fa;
+    border: 1px solid #0089fac7;   
 }

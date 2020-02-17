@@ -67,7 +67,7 @@ function ( template, cssContent, prop, jQuery, qlik ) {
 			$scope.viewChange = function(viewNo){							
 				getMasterLibrary(viewNo);
 				viewNo == 1 ? ($scope.measureCss = 'lui-active', $scope.dimensionCss = '') : ($scope.measureCss = '', $scope.dimensionCss = 'lui-active');
-				$scope.searchClear();				
+				$scope.searchTagAndClear('');				
 			};
 			// search highlighter function
 			$scope.search = function () {				

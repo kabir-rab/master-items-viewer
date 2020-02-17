@@ -18,8 +18,8 @@
                     <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-show="layout.props.showId" >No</th>                 
                     <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-show="layout.props.showName" ng-click="sortBy('qData.title')">Name <span class="sortorder" ng-show="propertyName === 'qData.title'" ng-class="{reverse: reverse}"></span></th> 
                     <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-show="layout.props.showDesc" ng-click="sortBy('qData.description')">Definition <span class="sortorder" ng-show="propertyName === 'qData.description'" ng-class="{reverse: reverse}"></span></th> 
-                    <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-show="layout.props.showExp" ng-click="sortBy('qData.expression')">Expression/Formula<span class="sortorder" ng-show="propertyName === 'qData.expression'" ng-class="{reverse: reverse}"></span></th>
-                    <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-show="layout.props.showTag" >Tags</th>
+                    <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-show="layout.props.showExp" ng-click="sortBy('qData.expression')">Expression/Formula <span class="sortorder" ng-show="propertyName === 'qData.expression'" ng-class="{reverse: reverse}"></span></th>
+                    <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-show="layout.props.showTag" ng-click="sortBy('qData.tags')">Tags <span class="sortorder" ng-show="propertyName === 'qData.tags'" ng-class="{reverse: reverse}"></span></th>
                 </tr> 
             </thead> 
             <tr class="tr-search" ng-repeat="item in measureDetails | orderBy:propertyName:reverse | filter:searchText"> 
@@ -30,7 +30,7 @@
                 <td ng-show="layout.props.showTag"> 
                     <div ng-if="item.qData.tags.length" class="ng-scope">                        
                         <ul class="tags">
-                            <li ng-repeat="tag in item.qData.tags | filter:searchText" class="lui-tag tr-highlight" title="{{tag}}" ng-click="searchTagAndClear(tag)">{{tag}}</li>
+                            <li ng-repeat="tag in item.qData.tags" class="lui-tag {{(tag | uppercase) == (searchText | uppercase) ? 'lui-tag-search' : 'tr-highlight'}}" title="{{tag}}" ng-click="searchTagAndClear(tag)">{{tag}}</li>
                         </ul>
                     </div>
                 </td>                             
