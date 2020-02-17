@@ -1,7 +1,11 @@
 .top-menu {
 	width: 100%;
-	padding: 1rem 0 1.5rem;
+	padding: 1em 0 1em;
 	text-align: center;
+}
+.search-info {
+	padding: 0.3em;
+	font-size: 0.9em;
 }
 .search {
 	width: 50%;
@@ -12,7 +16,7 @@
 	background-color: yellow 
 }
 .table-container {
-	overflow: auto;
+	overflow: auto;	
 }
 .table-resizable.resizing, .table-resizable th::before {
 	cursor: e-resize;	
@@ -24,10 +28,12 @@
 
   .table-resizable th:hover {
 	border-right: 1px solid #585858;
+	filter:invert(100%);
   }
 
   .table-resizable th {
 	position: relative;
+	z-index:2;
   }
   .table-resizable th::before {
 	content: '';
@@ -104,4 +110,31 @@ content: '\25bc';
 	width: 100%;	
 	padding: 2rem;
 	text-align: center;
+}
+
+/* Tags styling */
+.tags li {
+    display: inline-block;
+    margin-bottom: 0;
+    margin-right: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 10px);
+}
+.lui-tag {
+	z-index:0;
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    height: 24px;
+    min-width: 40px;
+    color: #595959;
+    font-size: 13px;
+    border-radius: 12px;
+    background-color: #e6e6e6;
+    border: 1px solid #ccc;
+    padding: 3px 10px;
+    margin: 1px;
+    list-style: none;
+    white-space: nowrap;
 }

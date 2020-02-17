@@ -20,7 +20,7 @@ function ( template, cssContent, prop, jQuery, qlik ) {
 		},
 		template: template,		
 		controller: ['$scope', function( $scope ) {				
-			var app = qlik.currApp(this);			
+			var app = qlik.currApp(this);					
 			var searchValue='';
 			// settings up the createGenericObject call for the qMeasureListDef
 			var measureCall = {
@@ -31,7 +31,7 @@ function ( template, cssContent, prop, jQuery, qlik ) {
 				  qType: "measure",
 				  qData: {
 					title: "/qMetaDef/title",
-					//tags: "/qMetaDef/tags",
+					tags: "/qMetaDef/tags",
 					expression: "/qMeasure/qDef",
 					description: "/qMetaDef/description"
 				  }
@@ -46,18 +46,18 @@ function ( template, cssContent, prop, jQuery, qlik ) {
 				  qType: "dimension",
 				  qData: {
 					title: "/qMetaDef/title",
-					//tags: "/qMetaDef/tags",
+					tags: "/qMetaDef/tags",
 					expression: "/qDimension/qDef",
 					description: "/qMetaDef/description"
 				  }
 				}
 			};
 			// function to create generic object for Master Dimensions and Master Measures 
-			var getMasterLibrary = function(initialization){
+			var getMasterLibrary = function(callType){				
 				app.createGenericObject(
-					initialization == 1 ? measureCall : dimensionCall, 
+					callType == 1 ? measureCall : dimensionCall, 
 				function(reply) {					
-					initialization == 1 ? $scope.measureDetails = reply.qMeasureList.qItems : $scope.measureDetails = reply.qDimensionList.qItems;								 
+					callType == 1 ? $scope.measureDetails = reply.qMeasureList.qItems : $scope.measureDetails = reply.qDimensionList.qItems;
 				});
 			};
 			// trigger the first view
@@ -69,24 +69,26 @@ function ( template, cssContent, prop, jQuery, qlik ) {
 				viewNo == 1 ? ($scope.measureCss = 'lui-active', $scope.dimensionCss = '') : ($scope.measureCss = '', $scope.dimensionCss = 'lui-active');
 				$scope.searchClear();				
 			};
-			// search function
+			// search highlighter function
 			$scope.search = function () {				
-				searchValue = $('#table-search').val().toLowerCase();
-				$('.tr-search').filter(function () {
-					$(this).toggle($(this).attr("data-search").toLowerCase().indexOf(searchValue) > -1);					
-				});
+				searchValue = $('#table-search').val().toLowerCase();				
 				$('.tr-highlight').removeHighlight();
 				$('.tr-highlight').highlight(searchValue);								
 			};
 			// clear search function
-			$scope.searchClear = function () {
-				if(searchValue.length > 0){					
-					$('#table-search').val('');	
+			$scope.searchTagAndClear = function (tag) {
+				if(tag.length > 0){		
+					$scope.searchText = tag;	
+					$scope.search();
+				}
+				else{
+					$('#table-search').val('');
+					$scope.searchText = '';	
 					$scope.search();
 				};											
 			};
 			
-			//sorting function for the view
+			// sorting function for the view
 			$scope.propertyName = 'qData.title';
 			$scope.reverse = true;			
 
