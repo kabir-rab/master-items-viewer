@@ -24,9 +24,8 @@ function ( template, cssContent, prop, jQuery, qlik ) {
 			var searchValue='';
 			// settings up the createGenericObject call for the qMeasureListDef
 			var measureCall = {
-				qInfo: {
-				  qId: "MeasureList",
-				  qType: "MeasureList"
+				qInfo: {				  
+				  qType: "MeasureListExt"
 				},
 				qMeasureListDef: {
 				  qType: "measure",
@@ -40,9 +39,8 @@ function ( template, cssContent, prop, jQuery, qlik ) {
 			};
 			// settings up the createGenericObject call for the qDimensionListDef						
 			var dimensionCall = {
-				qInfo: {
-				  qId: "DimensionList",
-				  qType: "DimensionList"
+				qInfo: {				  
+				  qType: "DimensionListExt"
 				},
 				qDimensionListDef: {
 				  qType: "dimension",
@@ -88,10 +86,9 @@ function ( template, cssContent, prop, jQuery, qlik ) {
 				};											
 			};
 			
-			//sorting
+			//sorting function for the view
 			$scope.propertyName = 'qData.title';
-			$scope.reverse = true;
-			//$scope.friends = friends;
+			$scope.reverse = true;			
 
 			$scope.sortBy = function(propertyName) {
 				$scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
@@ -100,7 +97,7 @@ function ( template, cssContent, prop, jQuery, qlik ) {
 		}],
 		paint: function ($element) {
 			// set hight for the scroll bar
-			$(".table-container").css("max-height", ($element.height()-100));			
+			$(".table-container").css("max-height", ($element.height()-120));			
 			return qlik.Promise.resolve();
 		}
 	};
