@@ -1,13 +1,13 @@
-.top-menu {
+.qv-extension-mov-top-menu {
 	width: 100%;
 	padding: 1em 0 1em;
 	text-align: center;
 }
-.search-info {
+.qv-extension-mov-search-info {
 	padding: 0.3em;
 	font-size: 0.9em;
 }
-.search {
+.qv-extension-mov-search {
 	width: 50%;
 	min-width: 40px !important;
 	text-align: center;
@@ -57,7 +57,7 @@
 
 
 /* These are not being used any longer */
-.master-table {
+.qv-extension-mov-master-table {
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	border-collapse: collapse;
 	width: 100%;	
@@ -68,7 +68,7 @@
 	user-select: text !important;	   
 }
 
-.master-table tr {
+.qv-extension-mov-master-table tr {
 	-moz-user-select: text !important;
 	-khtml-user-select: text !important;
 	-webkit-user-select: text !important;
@@ -76,16 +76,16 @@
 	user-select: text !important;	   
 }
 
-.master-table td, .master-table th {
+.qv-extension-mov-master-table td, .qv-extension-mov-master-table th {
 	border: 1px solid #ddd;
 	padding: 8px;
 }
 
-.master-table tr:nth-child(even) td{background-color: #f2f2f2;}
+.qv-extension-mov-master-table tr:nth-child(even) td{background-color: #f2f2f2;}
 
-.master-table tr:hover td{background-color: #ddd;}
+.qv-extension-mov-master-table tr:hover td{background-color: #ddd;}
 
-.master-table th {
+.qv-extension-mov-master-table th {
 	padding-top: 12px;
 	padding-bottom: 12px;
 	text-align: left;
@@ -99,22 +99,22 @@
 }
 
 /* Sort icons */
-.sortorder:after {
+.qv-extension-mov-sortorder:after {
 	content: '\25b2';   
 }
-.sortorder.reverse:after {
+.qv-extension-mov-sortorder.reverse:after {
 content: '\25bc';   
 }
 
 /* for hidden text */
-.empty-display {
+.qv-extension-mov-empty-display {
 	width: 100%;	
 	padding: 2rem;
 	text-align: center;
 }
 
 /* Tags styling */
-.tags li {
+.qv-extension-mov-tags li {
     display: inline-block;
     margin-bottom: 0;
     margin-right: 3px;
@@ -122,7 +122,7 @@ content: '\25bc';
     text-overflow: ellipsis;
     max-width: calc(100% - 10px);
 }
-.lui-tag {
+.qv-extension-mov-lui-tag {
 	z-index:0;
     position: relative;
     display: inline-block;
@@ -139,13 +139,13 @@ content: '\25bc';
     list-style: none;
     white-space: nowrap;
 }
-.lui-tag:hover {    
+.qv-extension-mov-lui-tag:hover {    
     color: #fff;   
     background-color: #009845;
     border: 1px solid #0aaf54;   
 }
 
-.lui-tag-search {    
+.qv-extension-mov-lui-tag-search {    
     color: #fff;   
     background-color: #0089fa;
     border: 1px solid #0089fac7;   
