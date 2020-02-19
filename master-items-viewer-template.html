@@ -1,7 +1,13 @@
-<div qv-extension>
+<div qv-extension>    
     <div class="lui-buttongroup qv-extension-mov-top-menu">               
         <button class="lui-button  lui-buttongroup__button {{measureCss}}" ng-click="viewChange(1)">Measures</button>
         <button class="lui-button  lui-buttongroup__button {{dimensionCss}}" ng-click="viewChange(2)">Dimensions</button> 
+    </div>
+    <div ng-show="layout.props.tagsFilter" class="qv-extension-mov-lui-tag-group">                               
+        <ul ng-show="tags.length" class="qv-extension-mov-tags">
+            <li class="qv-extension-mov-lui-tag-title">Tags:</li><li ng-repeat="tag in tags" class="qv-extension-mov-lui-tag {{(tag | uppercase) == (searchText | uppercase) ? 'qv-extension-mov-lui-tag-search' : 'tr-highlight'}}" title="{{tag}}" ng-click="searchTagAndClear(tag)">{{tag}}</li>
+        </ul>
+        <div ng-show="!tags.length">No tags available!</div>        
     </div>
     <div class="qv-extension-mov-search-info">Displaying {{ (measureDetails | filter: searchText).length }} of {{ measureDetails.length }} entries.</div>
     <div class="lui-search">
@@ -22,22 +28,25 @@
                     <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-show="layout.props.showTag" ng-click="sortBy('qData.tags')">Tags <span class="qv-extension-mov-sortorder" ng-show="propertyName === 'qData.tags'" ng-class="{reverse: reverse}"></span></th>
                 </tr> 
             </thead> 
-            <tr class="tr-search" ng-repeat="item in measureDetails | orderBy:propertyName:reverse | filter:searchText"> 
+            <tr class="tr-search" ng-repeat="item in filteredRow = (measureDetails | filter:searchText | orderBy:propertyName:reverse)"> 
                 <td ng-show="layout.props.showId"> {{$index + 1}} </td>                 
                 <td ng-show="layout.props.showName" class="tr-highlight"> {{item.qData.title}} </td> 
                 <td ng-show="layout.props.showDesc" class="tr-highlight"> {{item.qData.description}} </td> 
                 <td ng-show="layout.props.showExp" class="tr-highlight"> {{item.qData.expression}} </td>
                 <td ng-show="layout.props.showTag"> 
-                    <div ng-if="item.qData.tags.length" class="ng-scope">                        
+                    <div ng-if="item.qData.tags.length">                        
                         <ul class="qv-extension-mov-tags">
                             <li ng-repeat="tag in item.qData.tags" class="qv-extension-mov-lui-tag {{(tag | uppercase) == (searchText | uppercase) ? 'qv-extension-mov-lui-tag-search' : 'tr-highlight'}}" title="{{tag}}" ng-click="searchTagAndClear(tag)">{{tag}}</li>
                         </ul>
                     </div>
-                </td>                             
-            </tr> 
+                </td>                                                 
+            </tr>               
         </table>                
     </div>
-</div>
-<div ng-if="layout.props.showId== false && layout.props.showName == false && layout.props.showDesc == false && layout.props.showExp == false && layout.props.showTag== false" class="qv-extension-mov-top-menu">
-    Please select a column to show from the property panel...
+    <div ng-hide="filteredRow.length" class="qv-extension-mov-top-menu">
+        No results found.
+    </div>    
+    <div ng-if="layout.props.showId== false && layout.props.showName == false && layout.props.showDesc == false && layout.props.showExp == false && layout.props.showTag== false" class="qv-extension-mov-top-menu">
+        Please select a column to show from the property panel...
+    </div>
 </div>

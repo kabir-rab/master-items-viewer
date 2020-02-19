@@ -1,16 +1,16 @@
 define( [
 	"text!./master-items-viewer-template.html",
-	"text!./lib/css/master-items-viewer.css",	
-	"./lib/js/property",		
-	"jquery",		
+	"text!./lib/css/master-items-viewer.css",
+	"./lib/js/property",
+	"jquery",
 	"qlik",
 	"./lib/js/table-resizer",
-	"./lib/js/jq-highlight"	
+	"./lib/js/jq-highlight"
 ],
 
 function ( template, cssContent, prop, jQuery, qlik ) {
 	'use strict';
-	$("<style>").html(cssContent).appendTo("head");		
+	$("<style>").html(cssContent).appendTo("head");	
 	return {
 		definition: prop,
 		support: {
@@ -18,13 +18,13 @@ function ( template, cssContent, prop, jQuery, qlik ) {
 			exportData: false,
 			snapshot: true
 		},
-		template: template,		
-		controller: ['$scope', function( $scope ) {				
-			var app = qlik.currApp(this);					
+		template: template,
+		controller: ['$scope', function( $scope ) {
+			var app = qlik.currApp(this);
 			var searchValue='';
 			// settings up the createGenericObject call for the qMeasureListDef
 			var measureCall = {
-				qInfo: {				  
+				qInfo: {
 				  qType: "MeasureListExt"
 				},
 				qMeasureListDef: {
@@ -37,9 +37,9 @@ function ( template, cssContent, prop, jQuery, qlik ) {
 				  }
 				}
 			};
-			// settings up the createGenericObject call for the qDimensionListDef						
+			// settings up the createGenericObject call for the qDimensionListDef
 			var dimensionCall = {
-				qInfo: {				  
+				qInfo: {
 				  qType: "DimensionListExt"
 				},
 				qDimensionListDef: {
@@ -52,56 +52,69 @@ function ( template, cssContent, prop, jQuery, qlik ) {
 				  }
 				}
 			};
-			// function to create generic object for Master Dimensions and Master Measures 
-			var getMasterLibrary = function(callType){				
+			// function to create generic object for Master Dimensions and Master Measures
+			var getMasterLibrary = function(callType){
 				app.createGenericObject(
-					callType == 1 ? measureCall : dimensionCall, 
-				function(reply) {					
-					callType == 1 ? $scope.measureDetails = reply.qMeasureList.qItems : $scope.measureDetails = reply.qDimensionList.qItems;
+					callType == 1 ? measureCall : dimensionCall,
+				function(reply) {
+					callType == 1 ? ($scope.measureDetails = reply.qMeasureList.qItems, createTagList($scope.measureDetails))
+									 : ($scope.measureDetails = reply.qDimensionList.qItems,createTagList($scope.measureDetails));
 				});
 			};
 			// trigger the first view
 			var measureTrigger = getMasterLibrary(1);
 			$scope.measureCss = 'lui-active'
 			// function to change views (dimensions or measures)
-			$scope.viewChange = function(viewNo){							
+			$scope.viewChange = function(viewNo){
 				getMasterLibrary(viewNo);
 				viewNo == 1 ? ($scope.measureCss = 'lui-active', $scope.dimensionCss = '') : ($scope.measureCss = '', $scope.dimensionCss = 'lui-active');
-				$scope.searchTagAndClear('');				
+				$scope.searchTagAndClear('');
 			};
 			// search highlighter function
 			$scope.search = function () {				
-				searchValue = $('#table-search').val().toLowerCase();				
+				searchValue = $('#table-search').val().toLowerCase();
 				$('.tr-highlight').removeHighlight();
-				$('.tr-highlight').highlight(searchValue);								
+				$('.tr-highlight').highlight(searchValue);
 			};
 			// clear search function
 			$scope.searchTagAndClear = function (tag) {
 				if(tag.length > 0){		
-					$scope.searchText = tag;	
+					$scope.searchText = tag;
 					$scope.search();
 				}
 				else{
 					$('#table-search').val('');
 					$scope.searchText = '';	
 					$scope.search();
-				};											
+				};
 			};
-			
 			// sorting function for the view
 			$scope.propertyName = 'qData.title';
-			$scope.reverse = true;			
-
+			$scope.reverse = true;
 			$scope.sortBy = function(propertyName) {
 				$scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
 				$scope.propertyName = propertyName;
 			};
+			// create list of all tags with unique values
+			var createTagList = function(list){
+				var tagList=[];
+				list.forEach(function(measure){
+					if(measure.qData.tags.length > 0){
+						measure.qData.tags.forEach(function(tag){
+							if(!tagList.includes(tag)){
+								tagList.push(tag);
+							};
+						});
+					};
+				});
+				$scope.tags = tagList;
+			};
 		}],
-		paint: function ($element) {
+		paint: function ($element, layout) {
 			// set hight for the scroll bar
-			$(".table-container").css("max-height", ($element.height()-120));			
+			layout.props.tagsFilter == true ? $(".table-container").css("max-height", ($element.height()-200)):$(".table-container").css("max-height", ($element.height()-120));
+						
 			return qlik.Promise.resolve();
 		}
 	};
 });
-

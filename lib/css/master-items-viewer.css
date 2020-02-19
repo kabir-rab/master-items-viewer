@@ -122,6 +122,20 @@ content: '\25bc';
     text-overflow: ellipsis;
     max-width: calc(100% - 10px);
 }
+.qv-extension-mov-lui-tag-title {
+	z-index:0;
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    height: 24px;
+    min-width: 40px;    
+    font-size: 13px;
+    border-radius: 12px;    
+    padding: 3px 10px;
+    margin: 1px;
+    list-style: none;
+    white-space: nowrap;
+}
 .qv-extension-mov-lui-tag {
 	z-index:0;
     position: relative;
@@ -140,13 +154,23 @@ content: '\25bc';
     white-space: nowrap;
 }
 .qv-extension-mov-lui-tag:hover {    
-    color: #fff;   
-    background-color: #009845;
-    border: 1px solid #0aaf54;   
+    color: #fff;    
+	background-color: #0089fa;
+    border: 1px solid #0089fac7;   
 }
 
 .qv-extension-mov-lui-tag-search {    
     color: #fff;   
-    background-color: #0089fa;
-    border: 1px solid #0089fac7;   
+    background-color: #009845;
+	border: 1px solid #0aaf54;  
+}
+
+.qv-extension-mov-lui-tag-group {
+	display: flex;
+  	flex-wrap: wrap;
+	align-content: center;
+	justify-content: center;
+	padding: 0.5em 0 0.5em 0;
+	margin: 1em;
+	text-align: center;	
 }
