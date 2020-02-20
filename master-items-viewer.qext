@@ -14,7 +14,7 @@
     "keywords": "qlik-sense, visualization, master-item",
     "license": "MIT",
     "repository": "",
-    "preview": "",
+    "preview": "lib/img/preview.png",
     "dependencies": {
         "qlik-sense": ">=3.0.x"
     }
