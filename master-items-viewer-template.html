@@ -25,6 +25,7 @@
                     <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-show="layout.props.showName" ng-click="sortBy('qData.title')">Name <span class="qv-extension-mov-sortorder" ng-show="propertyName === 'qData.title'" ng-class="{reverse: reverse}"></span></th> 
                     <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-show="layout.props.showDesc" ng-click="sortBy('qData.description')">Definition <span class="qv-extension-mov-sortorder" ng-show="propertyName === 'qData.description'" ng-class="{reverse: reverse}"></span></th> 
                     <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-show="layout.props.showExp" ng-click="sortBy('qData.expression')">Expression/Formula <span class="qv-extension-mov-sortorder" ng-show="propertyName === 'qData.expression'" ng-class="{reverse: reverse}"></span></th>
+                    <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-show="layout.props.showStat" ng-click="sortBy('qInfo.inobject.length')">Number of times used <span class="qv-extension-mov-sortorder" ng-show="propertyName === 'qInfo.inobject.length'" ng-class="{reverse: reverse}"></span></th>
                     <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-show="layout.props.showTag" ng-click="sortBy('qData.tags')">Tags <span class="qv-extension-mov-sortorder" ng-show="propertyName === 'qData.tags'" ng-class="{reverse: reverse}"></span></th>
                 </tr> 
             </thead> 
@@ -33,6 +34,7 @@
                 <td ng-show="layout.props.showName" class="tr-highlight"> {{item.qData.title}} </td> 
                 <td ng-show="layout.props.showDesc" class="tr-highlight"> {{item.qData.description}} </td> 
                 <td ng-show="layout.props.showExp" class="tr-highlight"> {{item.qData.expression}} </td>
+                <td ng-show="layout.props.showStat" class="qv-extension-mov-stat-td"> {{item.qInfo.inobject.length}} <span ng-if="item.qInfo.inobject.length">( <span ng-repeat="cid in item.qInfo.inobject track by $index">{{cid}} {{$last ? '' : ($index==item.qInfo.inobject.length-2) ? ' and ' : ', '}}</span> )</span></td>
                 <td ng-show="layout.props.showTag"> 
                     <div ng-if="item.qData.tags.length">                        
                         <ul class="qv-extension-mov-tags">
@@ -46,7 +48,7 @@
     <div ng-hide="filteredRow.length" class="qv-extension-mov-top-menu">
         No results found.
     </div>    
-    <div ng-if="layout.props.showId== false && layout.props.showName == false && layout.props.showDesc == false && layout.props.showExp == false && layout.props.showTag== false" class="qv-extension-mov-top-menu">
+    <div ng-if="layout.props.showId== false && layout.props.showName == false && layout.props.showDesc == false && layout.props.showExp == false && layout.props.showTag == false && layout.props.showStat == false" class="qv-extension-mov-top-menu">
         Please select a column to show from the property panel...
     </div>
 </div>

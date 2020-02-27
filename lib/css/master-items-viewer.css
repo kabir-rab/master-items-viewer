@@ -55,7 +55,6 @@
 	white-space: nowrap; */
   }
 
-
 /* These are not being used any longer */
 .qv-extension-mov-master-table {
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -66,6 +65,10 @@
 	-webkit-user-select: text !important;
 	-ms-user-select: text !important;
 	user-select: text !important;	   
+}
+
+.qv-extension-mov-stat-td {
+	text-align: center;
 }
 
 .qv-extension-mov-master-table tr {
