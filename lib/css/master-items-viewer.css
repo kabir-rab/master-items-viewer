@@ -64,7 +64,7 @@
 	-khtml-user-select: text !important;
 	-webkit-user-select: text !important;
 	-ms-user-select: text !important;
-	user-select: text !important;	   
+	user-select: text !important;
 }
 
 .qv-extension-mov-stat-td {
@@ -76,7 +76,7 @@
 	-khtml-user-select: text !important;
 	-webkit-user-select: text !important;
 	-ms-user-select: text !important;
-	user-select: text !important;	   
+	user-select: text !important;
 }
 
 .qv-extension-mov-master-table td, .qv-extension-mov-master-table th {
@@ -131,9 +131,9 @@ content: '\25bc';
     display: inline-block;
     box-sizing: border-box;
     height: 24px;
-    min-width: 40px;    
+    min-width: 40px;
     font-size: 13px;
-    border-radius: 12px;    
+    border-radius: 12px;
     padding: 3px 10px;
     margin: 1px;
     list-style: none;
@@ -156,16 +156,16 @@ content: '\25bc';
     list-style: none;
     white-space: nowrap;
 }
-.qv-extension-mov-lui-tag:hover {    
+.qv-extension-mov-lui-tag:hover { 
     color: #fff;    
 	background-color: #0089fa;
-    border: 1px solid #0089fac7;   
+    border: 1px solid #0089fac7;
 }
 
-.qv-extension-mov-lui-tag-search {    
+.qv-extension-mov-lui-tag-search {
     color: #fff;   
     background-color: #009845;
-	border: 1px solid #0aaf54;  
+	border: 1px solid #0aaf54;
 }
 
 .qv-extension-mov-lui-tag-group {
@@ -175,5 +175,53 @@ content: '\25bc';
 	justify-content: center;
 	padding: 0.5em 0 0.5em 0;
 	margin: 1em;
-	text-align: center;	
+	text-align: center;
 }
+
+/* list styling */
+.qv-extension-mov-list-inline {
+    list-style: none;
+    padding: 0;
+}
+
+.qv-extension-mov-list-inline > li {
+	display: inline-flex;
+	border-bottom: 1px dotted black;
+}
+
+.qv-extension-mov-list-bull > li:not(:last-child)::after {
+    content: "•";
+}
+
+.qv-extension-mov-list-pipe > li:not(:last-child)::after {
+	content: "|";
+	margin: 0 .25em;
+}
+
+.qv-extension-mov-tooltip {
+	position: relative;	
+  }
+  
+  .qv-extension-mov-tooltip .qv-extension-mov-tooltiptext {
+	visibility: hidden;
+	width: 120px;
+	background-color: black;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 0;
+	position: absolute;
+	z-index: 1200;
+	bottom: 100%;
+	left: 50%;
+	margin-left: -60px;
+	
+	/* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+	opacity: 0;
+	transition: opacity 1s;
+  }
+  
+  .qv-extension-mov-tooltip:hover .qv-extension-mov-tooltiptext {
+	visibility: visible;
+	opacity: 1;
+  }

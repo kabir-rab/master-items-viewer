@@ -1,54 +1,63 @@
-<div qv-extension>    
-    <div class="lui-buttongroup qv-extension-mov-top-menu">               
+<div qv-extension>
+    <div class="lui-buttongroup qv-extension-mov-top-menu">
         <button class="lui-button  lui-buttongroup__button {{measureCss}}" ng-click="viewChange(1)">Measures</button>
         <button class="lui-button  lui-buttongroup__button {{dimensionCss}}" ng-click="viewChange(2)">Dimensions</button> 
     </div>
-    <div ng-show="layout.props.tagsFilter" class="qv-extension-mov-lui-tag-group">                               
-        <ul ng-show="tags.length" class="qv-extension-mov-tags">
+    <div ng-if="layout.props.tagsFilter" class="qv-extension-mov-lui-tag-group">
+        <ul ng-if="tags.length" class="qv-extension-mov-tags">
             <li class="qv-extension-mov-lui-tag-title">Tags:</li><li ng-repeat="tag in tags" class="qv-extension-mov-lui-tag {{(tag | uppercase) == (searchText | uppercase) ? 'qv-extension-mov-lui-tag-search' : 'tr-highlight'}}" title="{{tag}}" ng-click="searchTagAndClear(tag)">{{tag}}</li>
         </ul>
-        <div ng-show="!tags.length">No tags available!</div>        
+        <div ng-if="!tags.length">No tags available!</div>
     </div>
     <div class="qv-extension-mov-search-info">Displaying {{ (measureDetails | filter: searchText).length }} of {{ measureDetails.length }} entries.</div>
     <div class="lui-search">
         <span class="lui-icon  lui-icon--search  lui-search__search-icon"></span>
-        <input ng-model="searchText" ng-keyup="search()" class="lui-search__input" id="table-search" maxlength="255" spellcheck="false" type="text" placeholder="Search"/><!-- ng-keyup="search()"  -->       
+        <input ng-model="searchText" ng-keyup="search()" class="lui-search__input" id="table-search" maxlength="255" spellcheck="false" type="text" placeholder="Search"/><!-- ng-keyup="search()"  -->
         <button ng-click="searchTagAndClear('')" class="lui-search__clear-button">
             <span class="lui-icon  lui-icon--small  lui-icon--close"></span>
         </button>
     </div>    
-    <div class="table-container">        
+    <div class="table-container">
         <table id="master-lib-table" class="qv-extension-mov-master-table table-resizable">
-            <thead> 
-                <tr> 
-                    <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-show="layout.props.showId" >No</th>                 
-                    <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-show="layout.props.showName" ng-click="sortBy('qData.title')">Name <span class="qv-extension-mov-sortorder" ng-show="propertyName === 'qData.title'" ng-class="{reverse: reverse}"></span></th> 
-                    <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-show="layout.props.showDesc" ng-click="sortBy('qData.description')">Definition <span class="qv-extension-mov-sortorder" ng-show="propertyName === 'qData.description'" ng-class="{reverse: reverse}"></span></th> 
-                    <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-show="layout.props.showExp" ng-click="sortBy('qData.expression')">Expression/Formula <span class="qv-extension-mov-sortorder" ng-show="propertyName === 'qData.expression'" ng-class="{reverse: reverse}"></span></th>
-                    <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-show="layout.props.showStat" ng-click="sortBy('qInfo.inobject.length')">Number of times used <span class="qv-extension-mov-sortorder" ng-show="propertyName === 'qInfo.inobject.length'" ng-class="{reverse: reverse}"></span></th>
-                    <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-show="layout.props.showTag" ng-click="sortBy('qData.tags')">Tags <span class="qv-extension-mov-sortorder" ng-show="propertyName === 'qData.tags'" ng-class="{reverse: reverse}"></span></th>
-                </tr> 
-            </thead> 
-            <tr class="tr-search" ng-repeat="item in filteredRow = (measureDetails | filter:searchText | orderBy:propertyName:reverse)"> 
-                <td ng-show="layout.props.showId"> {{$index + 1}} </td>                 
-                <td ng-show="layout.props.showName" class="tr-highlight"> {{item.qData.title}} </td> 
-                <td ng-show="layout.props.showDesc" class="tr-highlight"> {{item.qData.description}} </td> 
-                <td ng-show="layout.props.showExp" class="tr-highlight"> {{item.qData.expression}} </td>
-                <td ng-show="layout.props.showStat" class="qv-extension-mov-stat-td"> {{item.qInfo.inobject.length}} <span ng-if="item.qInfo.inobject.length">( <span ng-repeat="cid in item.qInfo.inobject track by $index">{{cid}} {{$last ? '' : ($index==item.qInfo.inobject.length-2) ? ' and ' : ', '}}</span> )</span></td>
-                <td ng-show="layout.props.showTag"> 
-                    <div ng-if="item.qData.tags.length">                        
+            <thead>
+                <tr>
+                    <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-if="layout.props.showId" >No</th>                                     
+                    <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-if="layout.props.showName" ng-click="sortBy('qData.title')">Name <span class="qv-extension-mov-sortorder" ng-if="propertyName === 'qData.title'" ng-class="{reverse: reverse}"></span></th>
+                    <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-if="layout.props.showObjectId" ng-click="sortBy('qInfo.qId')">Id <span class="qv-extension-mov-sortorder" ng-if="propertyName === 'qInfo.qId'" ng-class="{reverse: reverse}"></span></th>
+                    <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-if="layout.props.showDesc" ng-click="sortBy('qData.description')">Definition <span class="qv-extension-mov-sortorder" ng-if="propertyName === 'qData.description'" ng-class="{reverse: reverse}"></span></th>
+                    <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-if="layout.props.showExp" ng-click="sortBy('qData.expression')">Expression/Formula <span class="qv-extension-mov-sortorder" ng-if="propertyName === 'qData.expression'" ng-class="{reverse: reverse}"></span></th>
+                    <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-if="layout.props.showStat" ng-click="sortBy('qInfo.inObject.length')">Used in <span class="qv-extension-mov-sortorder" ng-if="propertyName === 'qInfo.inObject.length'" ng-class="{reverse: reverse}"></span></th>
+                    <th ng-style="{'background-color': layout.headerColor.color, 'color': layout.headerTextColor.color}" ng-if="layout.props.showTag" ng-click="sortBy('qData.tags')">Tags <span class="qv-extension-mov-sortorder" ng-if="propertyName === 'qData.tags'" ng-class="{reverse: reverse}"></span></th>
+                </tr>
+            </thead>
+            <tr class="tr-search" ng-repeat="item in filteredRow = (measureDetails | filter:searchText | orderBy:propertyName:reverse)">
+                <td ng-if="layout.props.showId"> {{$index + 1}} </td>
+                <td ng-if="layout.props.showName" class="tr-highlight"> {{item.qData.title}} </td>
+                <td ng-if="layout.props.showObjectId" class="tr-highlight"> {{item.qInfo.qId}} </td>
+                <td ng-if="layout.props.showDesc" class="tr-highlight"> {{item.qData.description}} </td>
+                <td ng-if="layout.props.showExp" class="tr-highlight"> <p ng-if="!item.qData.expression.length"> {{item.qData.expression.qFieldDefs}} </p><p ng-if="item.qData.expression.length"> {{item.qData.expression}} </p></td>
+                <td ng-if="layout.props.showStat" class="qv-extension-mov-stat-td"> {{item.qInfo.inObject.length}}
+                    <span ng-if="item.qInfo.inObject.length">
+                        <ul class="qv-extension-mov-list-inline qv-extension-mov-list-pipe">
+                            <li class="qv-extension-mov-tooltip" ng-repeat="cid in item.qInfo.inObject track by $index">{{cid.objectId}}
+                                <span class="qv-extension-mov-tooltiptext"><p ng-if="cid.sheetTitle.length">{{cid.sheetTitle}}</p><p ng-if="!cid.sheetTitle.length">Master Object</p></span>
+                            </li>
+                        </ul>
+                    </span></td>
+                <td ng-if="layout.props.showTag">
+                    <div ng-if="item.qData.tags.length">
                         <ul class="qv-extension-mov-tags">
                             <li ng-repeat="tag in item.qData.tags" class="qv-extension-mov-lui-tag {{(tag | uppercase) == (searchText | uppercase) ? 'qv-extension-mov-lui-tag-search' : 'tr-highlight'}}" title="{{tag}}" ng-click="searchTagAndClear(tag)">{{tag}}</li>
                         </ul>
                     </div>
-                </td>                                                 
-            </tr>               
-        </table>                
+                </td>
+            </tr>
+        </table>
     </div>
-    <div ng-hide="filteredRow.length" class="qv-extension-mov-top-menu">
+    <div ng-if="!filteredRow.length" class="qv-extension-mov-top-menu">
         No results found.
     </div>    
-    <div ng-if="layout.props.showId== false && layout.props.showName == false && layout.props.showDesc == false && layout.props.showExp == false && layout.props.showTag == false && layout.props.showStat == false" class="qv-extension-mov-top-menu">
+    <div ng-if="layout.props.showId== false && layout.props.showName == false && layout.props.showDesc == false && layout.props.showExp == false && layout.props.showTag == false && layout.props.showStat == false && layout.props.showObjectId == false" class="qv-extension-mov-top-menu">
         Please select a column to show from the property panel...
     </div>
 </div>
