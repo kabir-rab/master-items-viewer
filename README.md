@@ -33,5 +33,3 @@ Download [release v-1.0.0.2](https://github.com/kabir-rab/master-items-viewer/re
 
 # How to use
 Go to "edit" mode of a Qlik sense app. Then Custom objects > "Kab-s Game Example Bundle" > Master Items Viewer. Drag this to the workspace and resize to your requirement. You can use the property panel to show/hide columns, filters and change the table header appearance.
-
-#### _Note for developers - attached an angular service to Qlik's "qvangular". it contains a class which requires converting using babel to work in IE as IE does not recognise JavaScript classes. This is only if you are downloading the repo to build on top. I have already recompiled it for the release._
