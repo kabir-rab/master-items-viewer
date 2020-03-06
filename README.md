@@ -1,3 +1,4 @@
+### _Works on November 2019+ for now. Looking to resolve the issue with the older versions._
 # master-items-viewer
 Displays master dimensions and master measures with expressions and descriptions. This allows users to search the master items by description, expression, name or tags.
 
