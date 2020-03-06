@@ -8,7 +8,7 @@
     },
     "type": "visualization",
     "icon": "extension",
-    "version": "1.0.0.2",
+    "version": "1.0.0.3",
     "author": "Kabir Rab",
     "homepage": "https://kabonline.net",
     "keywords": "qlik-sense, visualization, master-item",

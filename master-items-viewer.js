@@ -20,14 +20,15 @@ function ( template, cssContent, prop, jQuery, qlik, myService ) {
 		},
 		template: template,
 		controller: ['$scope', 'masterItemService', function( $scope, masterItemService ) {
-			var getMasterLibrary,
-				fetchData = masterItemService.getData().done(function(masterItems){
-					getMasterLibrary = function(callType){					
-						callType == 1 ? ($scope.measureDetails = masterItems.measures,createTagList($scope.measureDetails))
-										: ($scope.measureDetails = masterItems.dimensions,createTagList($scope.measureDetails));
-					};
+			var masterItems,				
+				fetchData = masterItemService.getData().done(function(allMasterItems){	
+					masterItems = allMasterItems;
 					getMasterLibrary(1);
 				}),
+				getMasterLibrary = function(callType){					
+					callType == 1 ? ($scope.measureDetails = masterItems.measures,createTagList($scope.measureDetails))
+									: ($scope.measureDetails = masterItems.dimensions,createTagList($scope.measureDetails));
+				},
 				searchValue='',
 				// create list of all tags with unique values
 				createTagList = function(list){
