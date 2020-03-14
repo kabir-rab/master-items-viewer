@@ -1,4 +1,4 @@
-### _Works on November 2019+ for now. For earlier Qlik Sense version - Please use the lite version (master-items-viewer-lite)[https://github.com/kabir-rab/master-items-viewer-lite]._
+### _Works on November 2019+ for now. For earlier Qlik Sense version - Please use the lite version [master-items-viewer-lite](https://github.com/kabir-rab/master-items-viewer-lite)._
 # master-items-viewer
 Displays master dimensions and master measures with expressions and descriptions. This allows users to search the master items by description, expression, name or tags.
 
