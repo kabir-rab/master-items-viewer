@@ -10,7 +10,7 @@ Displays master dimensions and master measures with expressions and descriptions
 * Their Descriptions.
 * Their Expressions.
 * Stats count - No of times they have been used (unique number of times if it’s been used in master items).
-* On mouse hove, display the sheet where the chart is located (if not master Items)
+* On mouse hover, display the sheet where the chart is located (if not master Items)
 * Option to customise (header colours)
 * Option to show/hide any columns.
 * Option to search the master measures and dimensions by tag or any of their attributes (including ids).
